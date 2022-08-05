@@ -24,6 +24,7 @@
                     <t t-esc="message"/>
                 </p>
                 <t t-call="web.layout">
+                    <!-- refer to : https://open.dingtalk.com/document/org/scan-qr-code-to-login-3rdapp  -->
                     <script src="//g.alicdn.com/dingding/dinglogin/0.0.5/ddLogin.js"></script>
                     <script type="text/javascript" src="/dindin_login/static/src/js/dindin_login.js"></script>
                 </t>

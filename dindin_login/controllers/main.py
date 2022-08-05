@@ -108,6 +108,11 @@ class DinDinLogin(Home, http.Controller):
         request.uid = old_uid
         return self._do_err_redirect("用户不存在或用户信息错误,无法完成登录,请联系管理员")
 
+    def _compute_signature(self, secret, cannonicalString):
+        message = cannonicalString.encode(encoding='utf-8')
+        sec = secret.encode(encoding='utf-8')
+        return (base64.b64encode(hmac.new(sec, message, digestmod=hashlib.sha256).digest()))
+    
     def getUserInfobyDincode(self, d_code):
         """
         根据返回的临时授权码获取用户信息
@@ -122,9 +127,9 @@ class DinDinLogin(Home, http.Controller):
         # ------------------------
         # 签名
         # ------------------------
-        signature = hmac.new(key.encode('utf-8'), msg.encode('utf-8'),
-                             hashlib.sha256).digest()
+        signature = hmac.new(key.encode('utf-8'), msg.encode('utf-8'),hashlib.sha256).digest()
         signature = quote(base64.b64encode(signature), 'utf-8')
+        #signature = self._compute_signature(key, msg)
         data = {
             'tmp_auth_code': d_code
         }

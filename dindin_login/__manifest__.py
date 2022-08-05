@@ -2,7 +2,10 @@
 {
     'name': "钉钉办公-扫码登录",
     'summary': """钉钉办公-扫码登录""",
-    'description': """ 钉钉办公-扫码登录 """,
+    'description': """ 钉钉办公-扫码登录 
+    refer to : https://open.dingtalk.com/document/org/scan-qr-code-to-login-3rdapp
+    
+    """,
     'author': "SuXueFeng",
     'website': "https://www.sxfblog.com",
     'category': 'dingding',
